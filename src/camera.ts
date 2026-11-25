@@ -5,7 +5,7 @@ export function stopTracks(stream: MediaStream | null) {
 }
 
 export function cameraError(error: unknown) {
-  const name = error instanceof Error ? error.name : "";
+    const name = typeof error === "object" && error !== null && "name" in error ? error.name : "";
   if (name === "NotAllowedError" || name === "SecurityError") return "Camera permission denied. Allow access in your browser and try again.";
   if (name === "NotFoundError" || name === "OverconstrainedError") return "Camera unavailable. Connect a camera or select another device.";
   return "Camera could not start. Check whether another application is using it.";

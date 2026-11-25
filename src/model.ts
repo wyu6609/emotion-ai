@@ -17,7 +17,6 @@ export function retryable<T>(load: () => Promise<T>) {
 
 export const loadModel = retryable(async () => {
   const api = await import("@vladmandic/face-api");
-  await api.tf.ready();
   const path = import.meta.env.BASE_URL + "models";
   await Promise.all([
     api.nets.tinyFaceDetector.loadFromUri(path),
